@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "build": "node node_modules/webpack/bin/webpack -w",
+    "devserver": "node node_modules/webpack-dev-server/bin/webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
