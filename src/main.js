@@ -5,9 +5,10 @@ export default class Main extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13, 14, 15, ''],
+            arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ''],
             newArr: [],
         };
+        this.editArr = this.editArr.bind(this);
     };
     componentDidMount () {
         let newArrTwo = [...this.state.arr];
@@ -17,7 +18,35 @@ export default class Main extends React.Component {
         newArrTwo.sort(newSort);
         this.setState( {
             newArr: newArrTwo,
+        });
+    };
+    editArr (numb, text) {
+        let newArrTwo = [...this.state.newArr];
+        // console.log(newArrTwo);
+        switch('') {
+            case newArrTwo[numb - 1]:
+                [newArrTwo[numb - 1], newArrTwo[numb]] = [newArrTwo[numb], newArrTwo[numb - 1]];
+                // console.log(newArrTwo);
+                break;
+            case newArrTwo[numb + 1]:
+                [newArrTwo[numb + 1], newArrTwo[numb]] = [newArrTwo[numb], newArrTwo[numb + 1]];
+                // console.log(newArrTwo);
+                break;
+            case newArrTwo[numb - 4]:
+                [newArrTwo[numb - 4], newArrTwo[numb]] = [newArrTwo[numb], newArrTwo[numb - 4]];
+                // console.log(newArrTwo);
+                break;
+            case newArrTwo[numb + 4]:
+                [newArrTwo[numb + 4], newArrTwo[numb]] = [newArrTwo[numb], newArrTwo[numb + 4]];
+                // console.log(newArrTwo);
+                break;
+        }
+        console.log(newArrTwo);
+        this.setState( {
+            newArr: newArrTwo,
         }, () => console.log(this.state.newArr));
+        // if ('' == this.state.newArr[numb-1] || '' == this.state.newArr[numb + 1] || '' == this.state.newArr[numb - 4] || '' == this.state.newArr[numb + 4]) {}
+        
     };
     render () {
         let box = this.state.newArr.map( (text, index) => {
@@ -26,6 +55,7 @@ export default class Main extends React.Component {
                     key={index}
                     text={text}
                     numb={index}
+                    editArr={this.editArr}
                 />
             )
         });

@@ -9,13 +9,14 @@ export default class Box extends React.Component {
         };
         this.goFunc = this.goFunc.bind(this);
     };
-    goFunc () {};
+    goFunc () {
+        this.props.editArr(this.props.numb, this.props.text);
+    };
     render () {
         return (
             <div 
                 className='boxchild'
                 onClick={this.goFunc}
-                id={this.state.numb}
             >
                 <span>
                     {this.state.text}
