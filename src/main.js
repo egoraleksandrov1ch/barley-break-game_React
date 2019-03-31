@@ -3,18 +3,24 @@ import Box from './box';
 
 export default class Main extends React.Component {
     constructor (props) {
-        super(props)
+        super(props);
         this.state = {
             arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 , 11, 12, 13, 14, 15, ''],
-        }
+            newArr: [],
+        };
     };
-    render () {
-        let newArr = [...this.state.arr];
+    componentDidMount () {
+        let newArrTwo = [...this.state.arr];
         function newSort(a,b) {
             return Math.random() - 0.5;
         }
-        newArr.sort(newSort);
-        let box = newArr.map( (text, index) => {
+        newArrTwo.sort(newSort);
+        this.setState( {
+            newArr: newArrTwo,
+        }, () => console.log(this.state.newArr));
+    };
+    render () {
+        let box = this.state.newArr.map( (text, index) => {
             return(
                 <Box 
                     key={index}
@@ -23,7 +29,6 @@ export default class Main extends React.Component {
                 />
             )
         });
-        console.log(newArr);
         return (
             <main>
                 <div className='boxboss'>
