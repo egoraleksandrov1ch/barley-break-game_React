@@ -45,8 +45,6 @@ export default class Main extends React.Component {
         this.setState( {
             newArr: newArrTwo,
         }, () => console.log(this.state.newArr));
-        // if ('' == this.state.newArr[numb-1] || '' == this.state.newArr[numb + 1] || '' == this.state.newArr[numb - 4] || '' == this.state.newArr[numb + 4]) {}
-        
     };
     render () {
         let box = this.state.newArr.map( (text, index) => {
