@@ -3,10 +3,6 @@ import React from 'react';
 export default class Box extends React.Component {
     constructor (props) {
         super(props);
-        this.state = {
-            text: this.props.text,
-            numb: this.props.numb,
-        };
         this.goFunc = this.goFunc.bind(this);
     };
     goFunc () {
@@ -19,7 +15,7 @@ export default class Box extends React.Component {
                 onClick={this.goFunc}
             >
                 <span>
-                    {this.state.text}
+                    {this.props.text}
                 </span>
             </div>
         )
