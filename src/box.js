@@ -6,7 +6,10 @@ export default class Box extends React.Component {
         this.goFunc = this.goFunc.bind(this);
     };
     goFunc () {
-        this.props.editArr(this.props.numb, this.props.text);
+        this.props.editArr(this.props.text);
+    };
+    shouldComponentUpdate (nextProps) {
+      return this.props.text !== nextProps.text;  
     };
     render () {
         return (
