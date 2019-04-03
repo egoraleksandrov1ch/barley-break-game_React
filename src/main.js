@@ -8,8 +8,10 @@ export default class Main extends React.Component {
         this.state = {
             newArr: [],
             emptyFieldNumb: 0,
+            score: 0,
         };
         this.editArr = this.editArr.bind(this);
+        this.newScore = 0;
     };
     componentDidMount () {
         let newArrTwo = arr;
@@ -27,31 +29,35 @@ export default class Main extends React.Component {
         let newEmptyFieldNumb = this.state.emptyFieldNumb;
         switch(text) {
             case newArrTwo[this.state.emptyFieldNumb - 1]:
-                newEmptyFieldNumb = this.state.emptyFieldNumb -1;
+                newEmptyFieldNumb = this.state.emptyFieldNumb - 1;
+                this.newScore = this.newScore + 1;
                 [newArrTwo[newEmptyFieldNumb], newArrTwo[this.state.emptyFieldNumb]] = 
                 [newArrTwo[this.state.emptyFieldNumb], newArrTwo[newEmptyFieldNumb]];
                 break;
             case newArrTwo[this.state.emptyFieldNumb + 1]:
                 newEmptyFieldNumb = this.state.emptyFieldNumb + 1;
+                this.newScore = this.newScore + 1;
                 [newArrTwo[newEmptyFieldNumb], newArrTwo[this.state.emptyFieldNumb]] = 
                 [newArrTwo[this.state.emptyFieldNumb], newArrTwo[newEmptyFieldNumb]];
                 break;
             case newArrTwo[this.state.emptyFieldNumb - 4]:
                 newEmptyFieldNumb = this.state.emptyFieldNumb - 4;
+                this.newScore = this.newScore + 1;
                 [newArrTwo[newEmptyFieldNumb], newArrTwo[this.state.emptyFieldNumb]] = 
                 [newArrTwo[this.state.emptyFieldNumb], newArrTwo[newEmptyFieldNumb]];
                 break;
             case newArrTwo[this.state.emptyFieldNumb + 4]:
                 newEmptyFieldNumb = this.state.emptyFieldNumb + 4;
+                this.newScore = this.newScore + 1;
                 [newArrTwo[newEmptyFieldNumb], newArrTwo[this.state.emptyFieldNumb]] = 
                 [newArrTwo[this.state.emptyFieldNumb], newArrTwo[newEmptyFieldNumb]];
                 break;
         }
-        console.log(newArrTwo);
         this.setState( {
             newArr: newArrTwo,
             emptyFieldNumb: newEmptyFieldNumb,
-        }, () => console.log(this.state.newArr));
+            score: this.newScore,
+        }, () => console.log(this.state.score));
     };
     render () {
         let box = this.state.newArr.map( (text, index) => {
@@ -66,6 +72,11 @@ export default class Main extends React.Component {
         });
         return (
             <main>
+                <div className='score'>
+                    <span>
+                        {this.state.score}
+                    </span>
+                </div>
                 <div className='boxboss'>
                     {box}
                 </div>
