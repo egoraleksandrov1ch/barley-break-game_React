@@ -9,6 +9,7 @@ export default class Main extends React.Component {
             newArr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ''],
             emptyFieldNumb: 0,
             score: 0,
+            visibility: true,
         };
         this.editArr = this.editArr.bind(this);
         this.newScore = 0;
@@ -23,11 +24,14 @@ export default class Main extends React.Component {
         this.setState( {
             newArr: newArrTwo,
             emptyFieldNumb: newArrTwo.indexOf(''),
+            score: 0,
+            visibility: true,
         });
     };
     editArr (text, numb) {
         let newArrTwo = [...this.state.newArr];
         let newEmptyFieldNumb = this.state.emptyFieldNumb;
+        let newVisibility = true;
         switch(text) {
             case newArrTwo[this.state.emptyFieldNumb - 1]:
                 if (numb == 0 || numb == 1 || numb == 2 || numb == 4 || numb == 5 || numb == 6 || numb == 8 || numb == 9 || numb == 10 || numb == 12 || numb == 13 || numb == 14) {
@@ -58,10 +62,14 @@ export default class Main extends React.Component {
                 [newArrTwo[this.state.emptyFieldNumb], newArrTwo[newEmptyFieldNumb]];
                 break;
         }
+        if(newArrTwo.join() == '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,') {
+            newVisibility = !newVisibility;
+        }
         this.setState( {
             newArr: newArrTwo,
             emptyFieldNumb: newEmptyFieldNumb,
             score: this.newScore,
+            visibility: newVisibility,
         });
     };
     render () {
@@ -83,7 +91,10 @@ export default class Main extends React.Component {
                             {this.state.score}
                         </span>
                     </div>
-                    <div className='start' onClick={this.start}>
+                    <div 
+                        className='start' 
+                        onClick={this.start}
+                    >
                         <span>
                             START
                         </span>
@@ -91,6 +102,12 @@ export default class Main extends React.Component {
                 </div>
                 <div className='boxboss'>
                     {box}
+                </div>
+                <div 
+                    className='visibility'
+                    style={ {display:this.state.visibility ? 'none' : 'block'} }
+                >
+                    GOOD JOB!!!
                 </div>
             </main>
         )

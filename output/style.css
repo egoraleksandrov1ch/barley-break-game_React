@@ -72,3 +72,28 @@ head, body {
     text-align: center;
     padding-top: 2px;
 }
+.visibility {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    width: 60%;
+    height: 30%;
+    margin: 0 auto;
+    border: 2px solid black;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    color: black;
+    padding: 40px;
+    opacity: 0.9;
+}
+@media screen and (max-width:425px) {
+    main {
+        min-width: 425px;
+    }
+    .visibility {
+        width: 400px;
+        left: 12px;
+    }
+}
